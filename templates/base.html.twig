@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome-4.3.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ui-button.css') }}">
-    {#<link rel="stylesheet" href="{{ asset('css/ui-form.css')}}">#}
+    <link rel="stylesheet" href="{{ asset('css/ui-form.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ui-table.css') }}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps|Karla">
     {% block stylesheets %}
@@ -28,26 +28,55 @@
     <!-- Interface utilisateur -->
     <nav class="user-interface">
         <ul class="link-list">
-            {#<?php if ($userSession->isAuthenticated()): ?>#}
-            {#<li>#}
+            {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {#<li>#}
                 {#<a href="<?= $requestUrl ?>/booking" class="button button-primary">Réserver</a>#}
                 {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
-            {#</li>#}
-            {#<li class="layout-right">#}
-                {#<p class="welcome">Bonjour <strong><?= htmlspecialchars($userSession->getFullName()) ?></strong></p>#}
-                {#<a href="<?= $requestUrl ?>/user/logout" class="button button-primary">Déconnexion</a>#}
-            {#</li>#}
-            {#<?php else: ?>#}
-            <li>
-                <a href="<?= $requestUrl ?>/user" class="button button-primary">Créer un compte</a>
-            </li>
-            <li class="layout-right">
-                <a href="<?= $requestUrl ?>/user/login" class="button button-primary">Connexion</a>
-            </li>
-            {#<?php endif ?>#}
+                {#</li>#}
+                <li class="layout-right">
+                    <p class="welcome">Bonjour <strong>{{ app.user.firstName }}</strong></p>
+                    <a href="{{ path('app_logout') }}" class="button button-primary">Déconnexion</a>
+                </li>
+            {% endif %}
+
+            {% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                <li>
+                    <a href="{{ path('app_register') }}" class="button button-primary">Créer un compte</a>
+                </li>
+
+                <li class="layout-right">
+                    <a href="{{ path('app_login') }}" class="button button-primary">Connexion</a>
+                </li>
+            {% endif %}
         </ul>
-        </nav>
+    </nav>
 </header>
+
+{#<!-- Message de notification -->#}
+
+{#<aside id="notice" class="notice">#}
+{#{% for flash_message in app.session.flashbag.get('success') %}#}
+{#<div class="container alert alert-success" role="alert">#}
+{#{{ flash_message }}#}
+{#</div>#}
+{#{% endfor %}#}
+{#{% for flash_message in app.session.flashbag.get('info') %}#}
+{#<div class="container alert alert-info" role="alert">#}
+{#{{ flash_message }}#}
+{#</div>#}
+{#{% endfor %}#}
+{#{% for flash_message in app.session.flashbag.get('warning') %}#}
+{#<div class="container alert alert-warning" role="alert">#}
+{#{{ flash_message }}#}
+{#</div>#}
+{#{% endfor %}#}
+{#{% for flash_message in app.session.flashbag.get('danger') %}#}
+{#<div class="container alert alert-danger" role="alert">#}
+{#{{ flash_message }}#}
+{#</div>#}
+{#{% endfor %}#}
+{#</aside>#}
+
 {% block body %}{% endblock %}
 <footer>
     <ul class="link-list">
@@ -66,41 +95,5 @@
 </html>
 
 
-{#<!-- Interface utilisateur -->#}
-{#<nav class="user-interface">#}
-    {#<ul class="link-list">#}
-        {#<!-- Code HTML/PHP à écrire -->#}
-        {#<?php if ($userSession->isAuthenticated()): ?>#}
-        {#<li>#}
-            {#<a href="<?= $requestUrl ?>/booking" class="button button-primary">Réserver</a>#}
-            {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
-        {#</li>#}
-        {#<li class="layout-right">#}
-            {#<p class="welcome">Bonjour <strong><?= htmlspecialchars($userSession->getFullName()) ?></strong></p>#}
-            {#<a href="<?= $requestUrl ?>/user/logout" class="button button-primary">Déconnexion</a>#}
-        {#</li>#}
-        {#<?php else: ?>#}
-        {#<li>#}
-            {#<a href="<?= $requestUrl ?>/user" class="button button-primary">Créer un compte</a>#}
-        {#</li>#}
-        {#<li class="layout-right">#}
-            {#<a href="<?= $requestUrl ?>/user/login" class="button button-primary">Connexion</a>#}
-        {#</li>#}
-        {#<?php endif ?>#}
-    {#</ul>#}
-{#</nav>#}
 
-{#<main>#}
-    {#<!-- Message de notification -->#}
-    {#<?php if ($flashBag->hasMessages()): ?>#}
-    {#<aside id="notice" class="notice">#}
-        {#<?php foreach ($flashBag->fetchMessages() as $message):?>#}
-        {#<p><?= $message ?></p>#}
-        {#<?php endforeach ?>#}
-    {#</aside>#}
-    {#<?php endif ?>#}
-
-    {#<!-- Affichage du template lié à la vue -->#}
-    {#<?php include $this->viewData['template'] ?>#}
-{#</main>#}
 
