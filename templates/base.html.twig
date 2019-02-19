@@ -1,12 +1,106 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/normalize-3.0.3.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome-4.3.0.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ui-button.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('css/ui-form.css')}}">#}
+    <link rel="stylesheet" href="{{ asset('css/ui-table.css') }}">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps|Karla">
+    {% block stylesheets %}
+    {% endblock %}
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+
+    {#<script src="{{ asset('js/main.js') }}"></script>#}
+    {#<script src="{{ asset('js/utilities.js') }}"></script>#}
+    {#<script src="{{ asset('js/FormValidator.class.js') }}"></script>#}
+</head>
+<body>
+<header>
+    <h1>
+        <a href="{{ path('homepage') }}">
+            <img src="{{ asset('images/restologo.png') }}" height="60" width="80" alt="Restaurant">Great Restaurant</a>
+    </h1>
+    <!-- Interface utilisateur -->
+    <nav class="user-interface">
+        <ul class="link-list">
+            {#<?php if ($userSession->isAuthenticated()): ?>#}
+            {#<li>#}
+                {#<a href="<?= $requestUrl ?>/booking" class="button button-primary">Réserver</a>#}
+                {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
+            {#</li>#}
+            {#<li class="layout-right">#}
+                {#<p class="welcome">Bonjour <strong><?= htmlspecialchars($userSession->getFullName()) ?></strong></p>#}
+                {#<a href="<?= $requestUrl ?>/user/logout" class="button button-primary">Déconnexion</a>#}
+            {#</li>#}
+            {#<?php else: ?>#}
+            <li>
+                <a href="<?= $requestUrl ?>/user" class="button button-primary">Créer un compte</a>
+            </li>
+            <li class="layout-right">
+                <a href="<?= $requestUrl ?>/user/login" class="button button-primary">Connexion</a>
+            </li>
+            {#<?php endif ?>#}
+        </ul>
+        </nav>
+</header>
+{% block body %}{% endblock %}
+<footer>
+    <ul class="link-list">
+        <li><img src="{{ asset('images/visa.png') }}" alt="Visa"></li>
+        <li><img src="{{ asset('images/mastercard.png') }}" alt="MasterCard"></li>
+        <li><img src="{{ asset('images/paypal.png') }}" alt="PayPal"></li>
+    </ul>
+    <small>Restaurant</small>
+</footer>
+
+{#<!-- Code principal JavaScript de l'application -->#}
+{#<script src="<?= $wwwUrl ?>/js/main.js"></script>#}
+
+{% block javascripts %}{% endblock %}
+</body>
 </html>
+
+
+{#<!-- Interface utilisateur -->#}
+{#<nav class="user-interface">#}
+    {#<ul class="link-list">#}
+        {#<!-- Code HTML/PHP à écrire -->#}
+        {#<?php if ($userSession->isAuthenticated()): ?>#}
+        {#<li>#}
+            {#<a href="<?= $requestUrl ?>/booking" class="button button-primary">Réserver</a>#}
+            {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
+        {#</li>#}
+        {#<li class="layout-right">#}
+            {#<p class="welcome">Bonjour <strong><?= htmlspecialchars($userSession->getFullName()) ?></strong></p>#}
+            {#<a href="<?= $requestUrl ?>/user/logout" class="button button-primary">Déconnexion</a>#}
+        {#</li>#}
+        {#<?php else: ?>#}
+        {#<li>#}
+            {#<a href="<?= $requestUrl ?>/user" class="button button-primary">Créer un compte</a>#}
+        {#</li>#}
+        {#<li class="layout-right">#}
+            {#<a href="<?= $requestUrl ?>/user/login" class="button button-primary">Connexion</a>#}
+        {#</li>#}
+        {#<?php endif ?>#}
+    {#</ul>#}
+{#</nav>#}
+
+{#<main>#}
+    {#<!-- Message de notification -->#}
+    {#<?php if ($flashBag->hasMessages()): ?>#}
+    {#<aside id="notice" class="notice">#}
+        {#<?php foreach ($flashBag->fetchMessages() as $message):?>#}
+        {#<p><?= $message ?></p>#}
+        {#<?php endforeach ?>#}
+    {#</aside>#}
+    {#<?php endif ?>#}
+
+    {#<!-- Affichage du template lié à la vue -->#}
+    {#<?php include $this->viewData['template'] ?>#}
+{#</main>#}
+

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+ {% block body %}
+     <div class="presentation">
+         <img src="{{ asset('images/salle.jpg') }}" alt="restaurant" class="imgResponsive" width="400" height="400">
+         <h2>Présentation</h2>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dicta, dolor eaque eos facilis fugiat,
+             incidunt ipsam, nisi obcaecati odit omnis praesentium provident quos recusandae rerum tempora ullam.
+             Cupiditate, explicabo.</p>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam dicta, dolor eaque eos facilis fugiat,
+             incidunt ipsam, nisi obcaecati odit omnis praesentium provident quos recusandae rerum tempora ullam.
+             Cupiditate, explicabo.</p>
+     </div>
+     <table class="generic-table meal-list">
+         <caption>Carte du restaurant</caption>
+         <tbody>
+         {% for meal in meals %}
+             <tr>
+                 <td>
+                     <img src="{{ asset('images/'~meal.image.url) }}"
+                          alt="{{ meal.image.alt }}">
+                 </td>
+                 <td>
+                     <strong>{{ meal.name }}</strong>
+                     <p>{{ meal.description }}</p>
+                 </td>
+                 <td class="number"><strong>{{ meal.salePrice | number_format(2, ',', ' ') }} €</strong></td>
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ {% endblock %}
