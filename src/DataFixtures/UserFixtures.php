@@ -22,7 +22,8 @@ class UserFixtures extends Fixture
         // On configure les langues de nos données
         $faker = Faker\Factory::create('fr_FR');
 
-                // on créé 10 users
+
+        // on créé 10 users
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstName($faker->firstName);

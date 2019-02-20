@@ -1,6 +1,32 @@
-#easy_admin:
-#    entities:
-#        # List the entity class name you want to manage
-#        - App\Entity\Product
-#        - App\Entity\Category
-#        - App\Entity\User
+easy_admin:
+    design:
+        assets:
+            js:
+                - 'js/fixForm.js' # hide delete label form next to 'upload image'
+    site_name: 'Restaurant'
+    user:
+        # this will look for getFullName(), isFullName(), ..., and 'fullName' property
+        name_property_path: 'firstName'
+    entities:
+        Meal:
+            class: App\Entity\Meal
+            list:
+                fields:
+                    - "id"
+                    - "name"
+                    - { property: "image", type: "image", base_path: "/images/" }
+
+        Media:
+            class: App\Entity\Media
+            list:
+                fields:
+                    - "alt"
+                    - { property: 'url', type: 'image', base_path: '%app.path.meal_images%' }
+            show:
+                fields:
+                    - "alt"
+                    - { property: 'url', type: 'image', base_path: '%app.path.meal_images%' }
+            form:
+                fields:
+                    - "alt"
+                    - { property: 'imageFile', type: 'vich_image' }
