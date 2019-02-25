@@ -9,8 +9,8 @@
     padding: 0.5em 1em;
 
     /* presentation */
-    background-color: rgba(255, 102, 51, 0.5);
-    border: 2px solid #FF3300;
+    /*background-color: rgba(255, 102, 51, 0.5);*/
+    border: 2px solid;
     border-radius: 6px;
     color: white;
 }
@@ -33,6 +33,7 @@
 }
 .generic-form input[type="password"],
 .generic-form input[type="text"],
+.generic-form input[type="email"],
 .generic-form select,
 .generic-form textarea
 {
@@ -45,12 +46,14 @@
 }
 .generic-form input[type="password"],
 .generic-form input[type="text"],
+.generic-form input[type="email"],
 .generic-form textarea
 {
     width: 20em;
 }
 .generic-form input[type="password"]:focus,
 .generic-form input[type="text"]:focus,
+.generic-form input[type="email"]:focus,
 .generic-form select:focus,
 .generic-form textarea:focus
 {

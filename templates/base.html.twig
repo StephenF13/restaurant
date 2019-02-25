@@ -29,10 +29,10 @@
     <nav class="user-interface">
         <ul class="link-list">
             {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                {#<li>#}
-                {#<a href="<?= $requestUrl ?>/booking" class="button button-primary">Réserver</a>#}
-                {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
-                {#</li>#}
+                <li>
+                    <a href="{{ path('booking') }}" class="button button-primary">Réserver</a>
+                    {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
+                </li>
                 <li class="layout-right">
                     <p class="welcome">Bonjour <strong>{{ app.user.firstName }}</strong></p>
                     <a href="{{ path('app_logout') }}" class="button button-primary">Déconnexion</a>
@@ -51,6 +51,7 @@
         </ul>
     </nav>
 </header>
+<hr>
 
 {#<!-- Message de notification -->#}
 
@@ -78,7 +79,23 @@
 {#</aside>#}
 
 {% block body %}{% endblock %}
+<hr>
 <footer>
+    <div class="information">
+        <div class="address-info">
+            <h3>ADRESSE</h3>
+            <p>150 rue d'ici <br>
+                38000 Grenoble <br>
+                Tél : 04 00 00 00 00 <br></p>
+        </div>
+        <div class="hour-info">
+            <h3>HORAIRES D'OUVERTURE</h3>
+            <p>Ouvert du Lundi au Dimanche <br>
+                de 12h à 14h <br>
+                de 19h à 22h <br></p>
+        </div>
+    </div>
+
     <ul class="link-list">
         <li><img src="{{ asset('images/visa.png') }}" alt="Visa"></li>
         <li><img src="{{ asset('images/mastercard.png') }}" alt="MasterCard"></li>

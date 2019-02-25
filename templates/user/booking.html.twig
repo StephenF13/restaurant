@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>
+        Réservation
+    </h1>
+
+    {{ form_start(form, { 'attr' : { 'class': 'generic-form' } }) }}
+
+
+    <div class="error-message">
+        <h3>{{ form_errors(form.name) }}</h3>
+        <h3>{{ form_errors(form.email) }}</h3>
+        <h3>{{ form_errors(form.phone) }}</h3>
+        <h3>{{ form_errors(form.seats) }}</h3>
+        <h3>{{ form_errors(form.date) }}</h3>
+        <h3>{{ form_errors(form.time) }}</h3>
+    </div>
+
+
+
+    <ul>
+        <li>
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+        </li>
+        <li>
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </li>
+        <li>
+            {{ form_label(form.phone) }}
+            {{ form_widget(form.phone) }}
+        </li>
+        <li>
+            {{ form_label(form.seats) }}
+            {{ form_widget(form.seats) }}
+        </li>
+        <li>
+            {{ form_label(form.date) }}
+            {{ form_widget(form.date) }}
+        </li>
+        <li>
+            {{ form_label(form.time) }}
+            {{ form_widget(form.time) }}
+        </li>
+
+    </ul>
+
+    {{ form_rest(form) }}
+    {{ form_end(form) }}
+
+{% endblock %}

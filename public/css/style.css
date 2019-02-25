@@ -18,6 +18,7 @@ a:hover {
 
 body {
     /* structure */
+
     border-top: 1.5em solid #EF4036;
     padding: 1em 5em;
 
@@ -43,14 +44,6 @@ fieldset legend {
     /* presentation */
     color: #1E593B;
     font-weight: bold;
-}
-
-footer {
-    /* structure */
-    margin-top: 3em;
-
-    /* presentation */
-    text-align: center;
 }
 
 h1 {
@@ -266,4 +259,25 @@ html {
 
 .invoice .city {
     text-transform: uppercase;
+}
+
+/*
+* footer
+ */
+
+footer {
+    /* structure */
+    margin-top: 3em;
+
+    /* presentation */
+    text-align: center;
+}
+
+.information {
+    display: flex;
+    justify-content: center;
+}
+
+.address-info {
+    margin-right: 200px;
 }
