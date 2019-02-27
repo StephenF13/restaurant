@@ -52,7 +52,8 @@ class SecurityController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            return $this->redirectToRoute('homepage');
+            $this->addFlash('success', 'Compte crée, utilisez vos identifiants pour vous connecter');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('security/register.html.twig');

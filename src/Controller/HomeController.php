@@ -44,11 +44,13 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($booking);
             $em->flush();
-            $this->addFlash('success', 'Votre réservation a bien été envoyé');
+            // possible envoi de mail pour prévenir le restaurant d'une demande de reservation (ici ou avec un service)
+            $this->addFlash('success', 'Votre demande de réservation a bien été envoyé');
             return $this->redirectToRoute('homepage');
         }
 
-//        todo possible d'envoyer un mail pour prévenir le restaurant d'une demande de reservation (message swiftmailer)
+
+
 
         return $this->render('user/booking.html.twig', ['form' => $form->createView()]);
     }

@@ -14,10 +14,6 @@
     {% block stylesheets %}
     {% endblock %}
     <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-
-    {#<script src="{{ asset('js/main.js') }}"></script>#}
-    {#<script src="{{ asset('js/utilities.js') }}"></script>#}
-    {#<script src="{{ asset('js/FormValidator.class.js') }}"></script>#}
 </head>
 <body>
 <header>
@@ -31,7 +27,7 @@
             {% if  is_granted('IS_AUTHENTICATED_REMEMBERED') %}
                 <li>
                     <a href="{{ path('booking') }}" class="button button-primary">Réserver</a>
-                    {#<a href="<?= $requestUrl ?>/order" class="button button-primary">Commander</a>#}
+                    {#<a href="{{ path('order') }}"  class="button button-primary">Commander</a>#}
                 </li>
                 <li class="layout-right">
                     <p class="welcome">Bonjour <strong>{{ app.user.firstName }}</strong></p>
@@ -53,30 +49,14 @@
 </header>
 <hr>
 
-{#<!-- Message de notification -->#}
-
-{#<aside id="notice" class="notice">#}
-{#{% for flash_message in app.session.flashbag.get('success') %}#}
-{#<div class="container alert alert-success" role="alert">#}
-{#{{ flash_message }}#}
-{#</div>#}
-{#{% endfor %}#}
-{#{% for flash_message in app.session.flashbag.get('info') %}#}
-{#<div class="container alert alert-info" role="alert">#}
-{#{{ flash_message }}#}
-{#</div>#}
-{#{% endfor %}#}
-{#{% for flash_message in app.session.flashbag.get('warning') %}#}
-{#<div class="container alert alert-warning" role="alert">#}
-{#{{ flash_message }}#}
-{#</div>#}
-{#{% endfor %}#}
-{#{% for flash_message in app.session.flashbag.get('danger') %}#}
-{#<div class="container alert alert-danger" role="alert">#}
-{#{{ flash_message }}#}
-{#</div>#}
-{#{% endfor %}#}
-{#</aside>#}
+<!-- Messages de notification -->
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <aside id="notice" class="notice">
+            {{ message }}
+        </aside>
+    {% endfor %}
+{% endfor %}
 
 {% block body %}{% endblock %}
 <hr>
@@ -104,8 +84,6 @@
     <small>Restaurant</small>
 </footer>
 
-{#<!-- Code principal JavaScript de l'application -->#}
-{#<script src="<?= $wwwUrl ?>/js/main.js"></script>#}
 
 {% block javascripts %}{% endblock %}
 </body>
